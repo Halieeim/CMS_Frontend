@@ -1,0 +1,13 @@
+<div *ngIf="loading">Loading doctors...</div>
+
+<div class="cards-container" *ngIf="!loading">
+  <div class="card" *ngFor="let doctor of doctors">
+    <h3>{{ doctor.name }}</h3>
+    <p *ngIf="doctor.specialization">Specialization: {{ doctor.specialization }}</p>
+    <p *ngIf="doctor.yearsOfExperience">Experience: {{ doctor.yearsOfExperience }} years</p>
+    <div class="actions">
+      <button (click)="deleteDoctor(doctor.id!)">Delete</button>
+      <button>Edit</button>
+    </div>
+  </div>
+</div>
