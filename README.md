@@ -2,6 +2,24 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0.
 
+## Deployments
+
+* Build Docker Image 
+```bash
+docker build -t cms-frontend-app .
+```
+* Create Docker Network 
+```bash
+docker network create clinic-net
+```
+* Run Container 
+```bash
+docker run -d --name cms-frontend-app --network clinic-net -p 8779:8779 cms-frontend-app
+```
+
+> ### Note:
+> in nginx.conf file, we use container name in the backend url that will be called by this frontend project, thats how the two containers will be able to communicate with each other.
+
 ## Development server
 
 To start a local development server, run:
