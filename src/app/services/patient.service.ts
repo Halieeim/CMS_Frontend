@@ -6,9 +6,18 @@ import { environment } from '../../environments/environment';
 
 export interface Patient {
   id: number;
-  name: string;
-  age?: number;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+  phone: string;
+  email: string;
+  address?: string;
+  emergencyContactName?: string;
+  emergencyContactPhone?: string;
   gender?: string;
+  medicalRecordIds?: number[];
+  appointmentIds?: number[];
+  billIds?: number[];
 }
 
 @Injectable({

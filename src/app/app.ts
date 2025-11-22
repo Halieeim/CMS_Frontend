@@ -1,41 +1,41 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './components/header/header';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, HeaderComponent],
+  templateUrl: './app.html',
+  styleUrls: ['./app.css']
 })
 export class App implements OnDestroy {
   showHeader = true;
   private sub: Subscription | null = null;
 
   // routes for which the header should be hidden
-  private hiddenRoutes = ['signin', 'signup'];
+  private hiddenRoutes = ['login', 'signup'];
 
   constructor(private router: Router) {
-    // Set initial visibility on app start (important)
+    // Set initial visibility on app start
     this.updateHeaderVisibility(this.router.url);
 
-    // Subscribe to route changes and update visibility on NavigationEnd
+    // Subscribe to route changes
     this.sub = this.router.events.subscribe(ev => {
       if (ev instanceof NavigationEnd) {
-        // use urlAfterRedirects if available, otherwise use url
-        const url = (ev as NavigationEnd).urlAfterRedirects ?? (ev as NavigationEnd).url;
+        const url = ev.urlAfterRedirects ?? ev.url;
         this.updateHeaderVisibility(url);
       }
     });
   }
 
   private updateHeaderVisibility(url: string) {
-    // Normalize: remove leading slash for easier checks
     const normalized = url.startsWith('/') ? url.substring(1) : url;
-
-    // Hide when any hidden route is a prefix of the current route (handles children / params)
-    this.showHeader = !this.hiddenRoutes.some(route => {
-      return normalized === route || normalized.startsWith(route + '/') || normalized.startsWith(route + '?') || normalized.startsWith(route + '#') || normalized.includes(`${route}?`) || normalized.includes(`${route}#`);
-    });
+    this.showHeader = !this.hiddenRoutes.some(route => 
+      normalized === route || normalized.startsWith(route + '/')
+    );
   }
 
   ngOnDestroy(): void {

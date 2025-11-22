@@ -6,34 +6,34 @@
 
     <!-- USER TYPE SELECTION -->
     <div class="form-group">
-      <label>Account Type</label>
+      <label>* Account Type</label>
       <select formControlName="isDoctor" class="form-control">
-        <option [ngValue]="true">Doctor</option>
-        <option [ngValue]="false">Patient</option>
-      </select>
+          <option [ngValue]="true">Doctor</option>
+          <option [ngValue]="false">Patient</option>
+        </select>
     </div>
 
     <!-- USERNAME -->
     <div class="form-group">
-      <label>Username</label>
+      <label>* Username</label>
       <input type="text" formControlName="username" class="form-control">
     </div>
 
     <!-- PASSWORD -->
     <div class="form-group">
-      <label>Password</label>
+      <label>* Password</label>
       <input type="password" formControlName="password" class="form-control">
     </div>
 
     <!-- FIRST NAME -->
     <div class="form-group">
-      <label>First Name</label>
+      <label>* First Name</label>
       <input type="text" formControlName="firstName" class="form-control">
     </div>
 
     <!-- LAST NAME -->
     <div class="form-group">
-      <label>Last Name</label>
+      <label>* Last Name</label>
       <input type="text" formControlName="lastName" class="form-control">
     </div>
 
@@ -51,7 +51,7 @@
 
     <!-- GENDER -->
     <div class="form-group">
-      <label>Gender</label>
+      <label>* Gender</label>
       <select formControlName="gender" class="form-control">
         <option value="">-- Select Gender --</option>
         <option value="MALE">MALE</option>
@@ -75,7 +75,7 @@
     <ng-container *ngIf="signUpForm.get('isDoctor')?.value === true">
 
       <div class="form-group">
-        <label>Specialization</label>
+        <label>* Specialization</label>
         <select formControlName="specialization" class="form-control">
           <option value="">-- Select Specialization --</option>
           <option *ngFor="let spec of specializations" [value]="spec">{{ spec }}</option>
@@ -83,7 +83,7 @@
       </div>
 
       <div class="form-group">
-        <label>Years of Experience</label>
+        <label>* Years of Experience</label>
         <input type="number" formControlName="yearsOfExperience" class="form-control" min="0" max="70">
       </div>
 
@@ -93,12 +93,12 @@
     <ng-container *ngIf="signUpForm.get('isDoctor')?.value === false">
 
       <div class="form-group">
-        <label>Emergency Contact Name</label>
+        <label>* Emergency Contact Name</label>
         <input type="text" formControlName="emergencyContactName" class="form-control">
       </div>
 
       <div class="form-group">
-        <label>Emergency Contact Phone</label>
+        <label>* Emergency Contact Phone</label>
         <input type="text" formControlName="emergencyContactPhone" class="form-control">
       </div>
 

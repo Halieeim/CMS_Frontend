@@ -1,22 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './header.html',
-  styleUrls: ['./header.css'],
-  imports: [CommonModule]
+  styleUrls: ['./header.css']
 })
 export class HeaderComponent {
-  isLoggedIn: boolean = false;
+  private router = inject(Router);
+  private auth = inject(AuthService);
 
-  constructor(private router: Router) {}
-
-  logout() {
-    // Clear localStorage/sessionStorage or call API
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']); // redirect to login
+  get isLoggedIn(): boolean {
+    return this.auth.isLoggedIn();
   }
 
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
 }

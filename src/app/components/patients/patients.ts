@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { PatientService, Patient } from '../../services/patient.service';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-patients',
@@ -10,19 +11,30 @@ import { CommonModule } from '@angular/common';
 })
 export class PatientsComponent implements OnInit {
   patients: Patient[] = [];
-  loading = false;
+  private patientService: PatientService = inject(PatientService);
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
 
-  constructor(private patientService: PatientService) {}
 
   ngOnInit(): void {
     this.fetchPatients();
   }
 
   fetchPatients() {
-    this.loading = true;
     this.patientService.getAll().subscribe({
-      next: data => { this.patients = data; this.loading = false; },
-      error: () => { this.loading = false; }
+      next: (data: Patient[]) => {
+        this.patients = [...data];
+        console.log(this.patients);
+        this.cdr.detectChanges();
+      },
+      error: (err: any) => {
+        console.error('Failed to load patients', err);
+        // if (err.status === 403 || (err.error?.message?.includes('Access') ?? true)) {
+        //   alert('⚠ You are not authorized to perform this action.');
+        // } else {
+        //   alert('An unexpected error occurred.');
+        // }
+        this.cdr.detectChanges();
+      }
     });
   }
 
