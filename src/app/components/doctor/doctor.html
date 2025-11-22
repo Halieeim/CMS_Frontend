@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>Doctors</h2>
+  
+  <div class="cards-container" *ngIf="doctors.length > 0">
+    <div class="card" *ngFor="let doctor of doctors">
+      <h3>{{ doctor.name }}</h3>
+      <p *ngIf="doctor.specialization">Specialization: {{ doctor.specialization }}</p>
+      <p *ngIf="doctor.yearsOfExperience">Experience: {{ doctor.yearsOfExperience }} years</p>
+      <div class="actions">
+        <button (click)="deleteDoctor(doctor.id!)">Delete</button>
+        <button>Edit</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="doctors.length === 0" class="no-data">
+    No doctors found.
+  </div>
+</div>

@@ -1,0 +1,120 @@
+/* Page background */
+.signup-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  font-family: "Inter", sans-serif;
+}
+
+/* Title */
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Form groups */
+.form-group {
+  margin-bottom: 18px;
+}
+
+/* Labels */
+.form-group label {
+  display: block;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* Inputs, selects, textarea */
+.form-control,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d1d1;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s ease;
+  background-color: #fafafa;
+}
+
+/* Focus effect */
+.form-control:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #4a90e2;
+  background-color: #fff;
+  box-shadow: 0 0 4px rgba(74, 144, 226, 0.3);
+}
+
+/* Submit button */
+button[type="submit"],
+.btn-primary {
+  width: 100%;
+  padding: 12px 0;
+  background: linear-gradient(135deg, #4a90e2, #357ABD);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  margin-top: 10px;
+}
+
+/* Button hover */
+button[type="submit"]:hover {
+  background: linear-gradient(135deg, #357ABD, #2b6eb3);
+}
+
+/* Disabled button */
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Textarea */
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .signup-container {
+    padding: 20px;
+    margin: 20px;
+  }
+}
+
+.signin-redirect {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.signin-redirect a {
+  color: #4a90e2;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 4px;
+  transition: 0.2s ease;
+}
+
+.signin-redirect a:hover {
+  text-decoration: underline;
+}

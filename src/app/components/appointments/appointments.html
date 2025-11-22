@@ -1,0 +1,14 @@
+<div *ngIf="loading">Loading appointments...</div>
+
+<div class="cards-container" *ngIf="!loading">
+  <div class="card" *ngFor="let appointment of appointments">
+    <p>Patient ID: {{ appointment.patientId }}</p>
+    <p>Doctor ID: {{ appointment.doctorId }}</p>
+    <p>Date: {{ appointment.date | date:'short' }}</p>
+    <p *ngIf="appointment.status">Status: {{ appointment.status }}</p>
+    <div class="actions">
+      <button (click)="deleteAppointment(appointment.id)">Delete</button>
+      <button>Edit</button>
+    </div>
+  </div>
+</div>

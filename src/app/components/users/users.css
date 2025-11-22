@@ -1,0 +1,23 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 6px;
+  width: 200px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  cursor: pointer;
+}
